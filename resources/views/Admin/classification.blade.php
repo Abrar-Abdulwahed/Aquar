@@ -12,8 +12,45 @@
             </nav>
         </div><!-- End Page Title -->
         <section class="section">
-            <button type="button" class="btn btn-warning"><i class="bi bi-exclamation-triangle"></i>
-            </button>
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#add_class">
+                    <i class="bi bi-plus-square-dotted"></i>
+                </button>
+                <div class="modal fade" id="add_class" tabindex="-1" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add Classification</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    @csrf
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">@</span>
+                                        <input type="text" class="form-control" name="name"
+                                            placeholder="Classification Name" aria-label="Username"
+                                            aria-describedby="basic-addon1">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <select class="form-select" aria-label="Default select example">
+                        <option selected="">Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                </div>
+            </div>
             <div class="row mt-3">
                 <div class="col-lg-12">
                     <div class="card">

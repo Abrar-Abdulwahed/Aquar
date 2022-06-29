@@ -1,9 +1,9 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.department') }}">
+            <a class="nav-link collapsed" href="{{ route('admin.classification') }}">
                 <i class="bi bi-person"></i>
-                <span>Department</span>
+                <span>Classification</span>
             </a>
         </li><!-- End Profile Page Nav -->
         <li class="nav-item">
