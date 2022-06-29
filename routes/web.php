@@ -26,3 +26,4 @@ Route::view('details/', 'Front.details')->name('details');
 
 Route::view('admin/', 'Admin.index')->name('admin.index');
 Route::view('admin/', 'Admin.department')->name('admin.department');
+Route::view('category/','Admin.category')->name('admin.category');
