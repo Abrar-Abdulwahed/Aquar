@@ -26,4 +26,4 @@ Route::view('details/', 'Front.details')->name('details');
 
 Route::view('admin/', 'Admin.index')->name('admin.index');
 Route::view('category/','Admin.category')->name('admin.category');
-Route::view('admin/', 'Admin.classification')->name('admin.classification');
+Route::view('admin/', 'Admin.classification.index')->name('admin.classification');
