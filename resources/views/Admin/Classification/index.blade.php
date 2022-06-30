@@ -25,13 +25,20 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="">
+                                <form action="{{ route('classification.store') }}" method="POST">
                                     @csrf
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1">@</span>
                                         <input type="text" class="form-control" name="name"
                                             placeholder="Classification Name" aria-label="name"
                                             aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" name="description"
+                                            placeholder="Classification Desc">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <input type="submit" class="btn btn-primary" value="save">
                                     </div>
                                 </form>
                             </div>
@@ -64,56 +71,73 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Brandon Jacob</td>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <button type="button" class="btn btn-warning me-2">
-                                                    <i class="bi bi-eye-fill"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-info me-2" data-bs-toggle="modal"
-                                                    data-bs-target="#edit_class">
-                                                    <i class="bi bi-pen-fill"></i>
-                                                </button>
-                                                <div class="modal fade" id="edit_class" tabindex="-1"
-                                                    style="display: none;" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title">Add Classification</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="">
-                                                                    @csrf
-                                                                    <div class="input-group mb-3">
-                                                                        <span class="input-group-text"
-                                                                            id="basic-addon1">@</span>
-                                                                        <input type="text" class="form-control"
-                                                                            name="name" value=""
-                                                                            placeholder="Classification Name"
-                                                                            aria-label="name"
-                                                                            aria-describedby="basic-addon1">
+                                    @if (isset($data) && $data->count() > 0)
+                                        @forelse ($data as $item)
+                                            <tr>
+                                                <th scope="row">{{ $loop->iteration }}</th>
+                                                <td>{{ $item->name }}</td>
+                                                <td>{{ $item->description }}</td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <button type="button" class="btn btn-warning me-2">
+                                                            <i class="bi bi-eye-fill"></i>
+                                                        </button>
+                                                        <button type="button" class="btn btn-info me-2"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#edit_class-{{ $item->id }}">
+                                                            <i class="bi bi-pen-fill"></i>
+                                                        </button>
+                                                        <div class="modal fade" id="edit_class-{{ $item->id }}"
+                                                            tabindex="-1" style="display: none;" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">update Classification</h5>
+                                                                        <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
                                                                     </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save
-                                                                    changes</button>
+                                                                    <div class="modal-body">
+                                                                        <form
+                                                                            action="{{ route('classification.update', $item->id) }}">
+                                                                            @method('PATCH')
+                                                                            @csrf
+                                                                            <div class="input-group mb-3">
+                                                                                <span class="input-group-text"
+                                                                                    id="basic-addon1">@</span>
+                                                                                <input type="text" class="form-control"
+                                                                                    name="name"
+                                                                                    value="{{ $item->name }}"
+                                                                                    placeholder="Classification Name"
+                                                                                    aria-label="name"
+                                                                                    aria-describedby="basic-addon1">
+                                                                                <input type="text" class="form-control"
+                                                                                    name="description"
+                                                                                    value="{{ $item->description }}"
+                                                                                    placeholder="Classification Desc">
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-bs-dismiss="modal">Close</button>
+                                                                                <input type="submit"
+                                                                                    class="btn btn-primary"
+                                                                                    value="save">
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
+                                                        <button type="button" class="btn btn-danger me-2">
+                                                            <i class="bi bi-archive-fill"></i>
+                                                        </button>
                                                     </div>
-                                                </div>
-                                                <button type="button" class="btn btn-danger me-2">
-                                                    <i class="bi bi-archive-fill"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
+                                    @endif
                                 </tbody>
                             </table>
                             <!-- End Table with stripped rows -->

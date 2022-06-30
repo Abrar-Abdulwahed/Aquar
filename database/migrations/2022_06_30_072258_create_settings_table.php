@@ -8,15 +8,20 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('site_infos', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->text('about');
+            $table->string('logo');
+            $table->string('facebook_url');
+            $table->string('twitter_url');
+            $table->string('whatsapp_url');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('site_infos');
+        Schema::dropIfExists('settings');
     }
 };

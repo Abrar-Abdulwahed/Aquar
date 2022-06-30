@@ -1,13 +1,13 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('admin.classification') }}">
+            <a class="nav-link collapsed" href="{{ route('classification.index') }}">
                 <i class="bi bi-person"></i>
                 <span>Classification</span>
             </a>
         </li><!-- End Profile Page Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route ('admin.category') }}">
+            <a class="nav-link collapsed" href="{{ route('admin.category') }}">
                 <i class="bi bi-question-circle"></i>
                 <span>Category</span>
             </a>
